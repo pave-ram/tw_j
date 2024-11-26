@@ -18,7 +18,7 @@ def new_book():
     if len(result) == 3: #проверяем количество полученных данных
         try:
             year = int(result[2]) #проверяем соотвествие записи года
-        except ValueError:
+        except Exception:
             print("При указании года, вписывайте просто число\n"
                   "(Пример: 2000)\n\n"
                   "Для повторной попытки добавления книги воспользуйтесь командой new_book")
@@ -40,7 +40,6 @@ def new_book():
         id_book = str(random.randint(1000000, 10000000)) #создаем уникальный id
         if id_book not in json_file: #проверка на уникальность значения id
             json_file[id_book] = new_data_book
-            print(json_file)
 
     with open('data.txt', 'w', encoding="UTF8") as outfile: #перезаписываем новые данные в "Хранилище"
         json.dump(json_file, outfile)
@@ -63,7 +62,7 @@ def delete_book():
 
     try:
         id_book = int(id_book) #проверка соответствия введнных данных
-    except TypeError:
+    except Exception:
         print("\nЗначение ID книги должен состоять из цифр от 0-9\n"
               "Для повторной попытки удаления книги воспользуйтесь командой delete_book\n\n")
         return None
@@ -102,7 +101,7 @@ def find_book():
     filter = input("Вводите: ")
     try:
         filter = int(filter) #проверка соответствия типа данных
-    except TypeError:
+    except Exception:
         print(f"Такого варианта нет!\n"
               "1 - поиск по названию\n"
               "2 - поиск по автору\n"
@@ -164,7 +163,7 @@ def find_book():
         year = input("Вводите: ")
         try:
             year = int(year) #проверка на соответствие типа данных
-        except TypeError:
+        except Exception:
             print("Год введен не корректно"
                   "(Пример: 1988)")
             return None
@@ -228,7 +227,7 @@ def update_status_book():
 
     try:
         id_book = int(id_book)  #проверка соответсивия типа данных
-    except TypeError:
+    except Exception:
         print("Значение ID книги должен состоять из цифр от 0-9\n"
               "Для повторной попытки обновления статуса книги воспользуйтесь командой update_status\n\n")
         return None
