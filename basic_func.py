@@ -202,18 +202,20 @@ def all_books():
     text = ""
     with open('data.txt', encoding="UTF8") as outfile: #открываем файл для чтения
         json_file = json.load(outfile)
+    if json_file != {}:
+        for id_book in json_file:
+            if json_file[id_book]['status'] == True:
+                status_book = 'в наличии'
+            else:
+                status_book = 'выдана'
 
-    for id_book in json_file:
-        if json_file[id_book]['status'] == True:
-            status_book = 'в наличии'
-        else:
-            status_book = 'выдана'
+            text += (f"ID:{id_book}  |Название: {json_file[id_book]['title']} "
+                     f" |Автор: {json_file[id_book]['author']}  |Год: {json_file[id_book]['year']} "
+                     f" |Статус: {status_book}\n") #формируем переменную text
 
-        text += (f"ID:{id_book}  |Название: {json_file[id_book]['title']} "
-                 f" |Автор: {json_file[id_book]['author']}  |Год: {json_file[id_book]['year']} "
-                 f" |Статус: {status_book}\n") #формируем переменную text
-
-    print(text)
+        print(text)
+    else:
+        print("На данный момент библеотека пуста :с")
 
 
 def update_status_book():
