@@ -3,7 +3,7 @@ from basic_func import *
 
 def base_func():
     """
-    Основной исполняемая функцияп
+    Основная исполняемая функция
     :return: None
     """
     while True: #запускаем бесконечный цикл
